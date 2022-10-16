@@ -1,17 +1,18 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Col, Image } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 const SingleDestination = ({ destination = {} }) => {
   const { image, title, price, _id, col } = destination;
-
+  const lazyRoot = React.useRef(null)
   return (
     <Col xl={col} lg={col}>
       <div className="destinations-one__single">
         <div className="destinations-one__img">
-          <Image
+          <Image lazyRoot={lazyRoot}
             src={`https://api.noiu-eo.com/${image}`}
-            alt=""
+            alt="image" layout='fill'
           />
           <div className="destinations-one__content">
               {/* <p className="destinations-one__sub-title">{body}</p> */}

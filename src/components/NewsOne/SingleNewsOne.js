@@ -14,7 +14,7 @@ const SingleNewsOne = ({ news = {}, newsTwo = false }) => {
     >
       <div className="news-one__img">
         <Image src={`https://api.noiu-eo.com/${image}`} alt="" />
-        <Link href={`/news-detail/${_id}`}>
+        <Link  href={`/news-detail/[id]`}  as={`/news-detail/${_id}`}>
           <a>
             <span className="news-one__plus"></span>
           </a>
@@ -28,7 +28,7 @@ const SingleNewsOne = ({ news = {}, newsTwo = false }) => {
       <div className="news-one__content">
         <ul className="list-unstyled news-one__meta">
           <li>
-            <Link href={`/news-detail/${_id}`}>
+            <Link  href={`/news-detail/[id]`}  as={`/news-detail/${_id}`}>
               <a>
                 <i className="far fa-user-circle"></i>
                 {author}
@@ -36,7 +36,7 @@ const SingleNewsOne = ({ news = {}, newsTwo = false }) => {
             </Link>
           </li>
           <li>
-            <Link href={`/news-detail/${_id}`}>
+            <Link href={`/news-detail/[id]`}  as={`/news-detail/${_id}`}>
               <a>
                 <i className="far fa-comments"></i>
                 {comments} Comments
@@ -45,7 +45,7 @@ const SingleNewsOne = ({ news = {}, newsTwo = false }) => {
           </li>
         </ul>
         <h3 className="news-one__title">
-          <Link href={`/news-detail/${_id}`}>{title}</Link>
+          <Link  href={`/news-detail/[id]`}  as={`/news-detail/${_id}`}>{title}</Link>
         </h3>
       </div>
     </div>

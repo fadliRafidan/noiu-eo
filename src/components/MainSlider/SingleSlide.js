@@ -19,7 +19,7 @@ const SingleSlide = (props) => {
         <div className="swiper-slide-inner">
           <Row>
             <Col xl={12}>
-              <h2>{props?.title}</h2>
+              <h2 style={{color:'white'}}>{props?.title}</h2>
             </Col>
           </Row>
         </div>

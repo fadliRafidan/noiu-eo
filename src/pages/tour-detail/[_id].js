@@ -1,29 +1,29 @@
 import Layout from "@/components/Layout/Layout";
 import MainSlider from "@/components/MainSlider/MainSlider";
 import axios from 'axios';
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 
 
-export  const getServerSideProps = async (context) =>{
-  const id = context.params._id
-// console.log(id);
-let res = await fetch('https://api.noiu-eo.com/v1/paket-wisata/post/'+ id);
-let data = await res.json();
-return {
-  props: {
-    coder : data.data 
-  },
-};
-}
 
-
-const TourDetails = ({coder}) => {
-  console.log(coder);
+const TourDetails = () => {
+  const router = useRouter()
+  const {_id} = router.query;
 
   const [data, setData] = useState([])
+  const [coder, setCoder] = useState([])
 
   const getBlog = async()=>{
+    const response = await axios.get('https://api.noiu-eo.com/v1/paket-wisata/post/'+ _id)
+    .then(result=>{
+      setCoder(result.data.data)
+    })
+    .catch(err=>{
+      console.log("error", err);
+    })
+  }
+  const getDetail = async()=>{
     const response = await axios.get('https://api.noiu-eo.com/v1/kontak/posts?page=1&perPage=1')
     .then(result=>{
       // console.log("data api", result.data);
@@ -37,7 +37,8 @@ const TourDetails = ({coder}) => {
   
   useEffect(()=>{
     getBlog()
-  },[])
+    getDetail()
+  },[_id])
 
   return (
     <Layout pageTitle="Tours Details">
